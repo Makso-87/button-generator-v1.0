@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+	<meta charset="UTF-8">
+	<title>Генератор кнопок</title>
+	<link rel="stylesheet" type="text/css" href="responsive.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="functions.js"></script>
+</head>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		/*Объявляем локальные переменные*/ 
+		bg_color = $("input[name='bg']").val();
+		font_color = $("input[name='font']").val();
+		border_color = $("input[name='border_color']").val();
+		shadow_color = $("input[name='shadow_color']").val();
+		width = $("input[name='width']").val();
+		height = $("input[name='height']").val();
+		/*Вызываем функцию вывода готового кода кнопки*/ 
+		output();
+		/*Вызываем функцию задания размеров кнопки*/ 
+		dimentionButton();
+		/*Вызываем функцию изменения парметров кнопки при изенении лубого значения лубого элемента формы*/
+		$("input").bind("change", change);
+		/*Вызываем функцию копирования готового кода кнопки в буфер обмена*/
+		$("a.clipboard").bind("click", clipBoard);
+		/*Задаем исходные стили кнопки*/
+		$("a.custom").css({"padding":"10px 20px",
+				 "background-color":"#2f1af2", 
+				 "color":"#fff", 
+				 "text-decoration":"none",
+				 "font-size":"1.3em",
+				 "font-family":"Helvetica"
+	    });
+	});
+</script>	
+<style>
+	body {
+		font-family: Helvetica;
+		background-color: #F4F4F4;
+	}
+
+	.button {
+		width: 80%;
+		margin: 100px auto;
+		text-align: center;
+		clear: both;
+	}
+
+	input {
+		margin: 5px 10px;
+		}
+		form {
+			width: 100%;
+		}
+
+	fieldset{
+		width: 420px;
+		margin: 5px auto;
+		border-radius: 5px;
+	}
+
+	input[type="range"]{
+		position: relative;
+		top: 7px;
+	}
+	input[type="checkbox"]{
+		position: relative;
+		top: 4px; 
+		width: 20px;
+		height: 20px;
+	}
+
+	p {
+		margin: 0 auto;
+		font-size: 1em;
+	}
+	.buff {
+		width: 90%;
+		margin: 50px auto;
+		text-align: center;
+	}
+	.clipboard {
+		color: #ffffff;
+		text-decoration: none;
+		background-color: #676767;
+		padding: 10px 20px;
+		border-radius: 3px;
+		position: relative;
+	}
+	.clipboard:hover {
+		background-color: #ff4400;
+	}
+	.clipboard:active {
+		top:3px;
+	}
+	#cont_right{
+		text-align: center;
+	}
+</style>
+<body>
+		<div class="content">
+			<div class="row">
+				<div class="cols col-5">
+					<form action="#" method="post">
+						<fieldset >
+							<legend>Основные параметры</legend>
+							<input name="bg" type="color" value="#2f1af2">
+							<label for="bg">Цвет фона</label>
+							<br>
+							<input name="width" type="range" max="100" min="10" step="1" value="20">
+							<label for="width">Ширина кнопки</label>
+							<span id="main_1"></span>
+							<br>
+							<input name="height" type="range" max="40" min="5" step="1" value="10">
+							<label for="height">Высота кнопки</label>
+							<span id="main_2"></span>
+							<br>
+							<input id="3" name="radius" type="checkbox">
+							<label for="radius">Скругление углов</label>
+							<input name="rad" type="range" max="50" min="1" step="1" value="2">
+							<span id="main_3"></span>
+						</fieldset>
+						<fieldset >
+							<legend>Параметры текста</legend>
+							<input id="4" name="text_shadow" type="checkbox">
+							<label for="text_shadow">Тень текста</label>
+							<input name="font" type="color" value="#ffffff">
+							<label for="font">Цвет текста</label>
+							<br>
+							<input name="tsh_x" type="range" max="10" min="-10" step="1" value="1">
+							<label for="tsh_x">Смещение тени по оси Х</label>
+							<span id="text_1"></span>
+							<br>
+							<input name="tsh_y" type="range" max="10" min="-10" step="1" value="1">
+							<label for="tsh_y">Смещение тени по оси Y</label>
+							<span id="text_2"></span>
+							<br>
+							<input name="tsh_blur" type="range" max="10" min="0" step="1" value="1">
+							<label for="tsh_blur">Размытие тени</label>
+							<span id="text_3"></span>
+							<br>
+							<input name="text_shadow_color" type="color" value="#000000">
+							<label for="text_shadow_color">Цвет тени текста</label><br>
+						</fieldset>
+						<fieldset >
+							<legend>Дополнительные параметры</legend>
+							<input id="1" name="border" type="checkbox">
+							<label for="border">Рамка</label>
+							<input name="brd_width" type="range" max="10" min="1" step="1" value="2">
+							<span id="prop_1"></span>
+							<input name="border_color" type="color" value="#000000">
+							<label for="border_color">Цвет рамки</label>
+							<br>
+							<input id="2" name="shadow" type="checkbox">
+							<label for="shadow">Тень</label>
+							<input name="shadow_color" type="color" value="#000000">
+							<label for="shadow_color">Цвет тени рамки</label>
+							<br>
+							<input name="sh_x" type="range" max="10" min="0" step="1" value="1">
+							<label for="sh_x">Смещение тени по оси Х</label>
+							<span id="prop_2"></span>
+							<br>
+							<input name="sh_y" type="range" max="10" min="0" step="1" value="1">
+							<label for="sh_y">Смещенеие тени по оси Y</label>
+							<span id="prop_3"></span>
+							<br>
+							<input name="sh_blur" type="range" max="10" min="0" step="1" value="1">
+							<label for="sh_blur">Размытие тени</label>
+							<span id="prop_4"></span>
+							<br>
+							<input name="sh_strach" type="range" max="10" min="0" step="1" value="1">
+							<label for="sh_strach">Растяжение тени</label>
+							<span id="prop_5"></span>
+							
+						</fieldset>
+					</form>
+				</div>
+				<div class="cols col-7">
+					
+						<div class="button">
+							<a class="custom" href="#">Кнопка</a>
+						</div>
+						<fieldset>
+						
+								<legend>Код для вставки</legend>
+								<div id="container">
+									<p class="source"></p>
+									<p>}</p>
+								</div>
+						</fieldset>
+						<div class="buff"><a class="clipboard" href="#">Копировать в буфер</a></div>
+						<div id="cont_right"></div>
+				</div>
+			</div>
+		</div>
+
+			
+			
+			
+
+
+			
+
+			
+			
+			
+		
+
+</body>
+</html>

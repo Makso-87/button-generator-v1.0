@@ -1,0 +1,49 @@
+/*Правила для адаптивной разметки сайта*/
+
+	.content .cols.col-1,
+	.content .cols.col-2,
+	.content .cols.col-3, 
+	.content .cols.col-4, 
+	.content .cols.col-5, 
+	.content .cols.col-6,
+	.content .cols.col-7,
+	.content .cols.col-8, 
+	.content .cols.col-9,
+	.content .cols.col-10,
+	.content .cols.col-11,
+	.content .cols.col-12 {width: 100%}
+/*Выстраивание стобцов один за другим, выстраивая в строки*/
+	.content .cols {
+	float: left;	
+}
+/*Постороение ровной сетки без сдвигов, выставление  */
+.content:before,
+.content:after,
+.row:before,
+.row:after {
+	content: " ";
+	display: table;
+}
+/*Очищение от свойства float чтобы столбцы не съезжали*/
+.content:after,
+.row:after {
+	clear: both;
+}	
+
+@media screen and (min-width: 600px) {
+	.content .cols.col-1 {width: 8.333333%}
+	.content .cols.col-2 {width: 16.666666%}
+	.content .cols.col-3 {width: 25%}
+	.content .cols.col-4 {width: 33.333333%}
+	.content .cols.col-5 {width: 41.666666%}
+	.content .cols.col-6 {width: 50%}
+	.content .cols.col-7 {width: 58.333333%}
+	.content .cols.col-8 {width: 66.666666%}
+	.content .cols.col-9 {width: 75%}
+	.content .cols.col-10 {width: 83.333333%}
+	.content .cols.col-11 {width: 91.666666%}
+	.content .cols.col-12 {width: 100%}
+	.img_general source { 
+	display: none;
+	}
+}
