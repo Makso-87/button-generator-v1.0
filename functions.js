@@ -112,7 +112,7 @@ function output(){
 					"   font-family: Helvetica;<br>"
 				);
 		}
-/*Данная вызывает функции установки параметров при именении любого значения любого элемента формы*/
+/*Данная функция вызывает функции установки параметров при именении любого значения любого элемента формы*/
 function change(){
 	font_color = $("input[name='font']").val();
 	bg_color = $("input[name='bg']").val();
@@ -139,7 +139,7 @@ function change(){
 	textShadow();
 	dimentionButton();
 }
-
+/*Функция копирует готовый код кнопки в буфер обмена*/
 function clipBoard(){
 	/*нашли наш контейнер*/
 	var cont = document.getElementById('container'); 
